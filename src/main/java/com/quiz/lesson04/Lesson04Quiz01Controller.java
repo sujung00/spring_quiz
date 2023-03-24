@@ -35,21 +35,20 @@ public class Lesson04Quiz01Controller {
 	}
 	
 	// http://localhost:8080/lesson04/quiz01/seller_info
-	public String sellerInfo(Model model) {
-		Seller seller = sellerBO.getSeller();
+	// http://localhost:8080/lesson04/quiz01/seller_info?id=1
+	@GetMapping("/seller_info")
+	public String sellerInfo(
+			@RequestParam(value="id", required = false) Integer id,
+			Model model) {
+		Seller seller;
+		if(id == null) {
+			seller = sellerBO.getSeller();
+		} else {
+			seller = sellerBO.getSellerById(id);
+		}
 		model.addAttribute("seller", seller);
 		
 		return "lesson04/sellerInfo";
 	}
 	
-	// http://localhost:8080/lesson04/quiz01/seller_info?id=1
-	@GetMapping("/seller_info")
-	public String sellerInfo(
-			@RequestParam("id") Integer id,
-			Model model) {
-		Seller seller = sellerBO.getSellerById(id);
-		model.addAttribute("seller", seller);
-		
-		return "lesson04/sellerInfo";
-	}
 }
