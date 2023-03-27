@@ -40,7 +40,7 @@ public class Lesson04Quiz01Controller {
 	public String sellerInfo(
 			@RequestParam(value="id", required = false) Integer id,
 			Model model) {
-		Seller seller;
+		Seller seller = null;
 		if(id == null) {
 			seller = sellerBO.getSeller();
 		} else {

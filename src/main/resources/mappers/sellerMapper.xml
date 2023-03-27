@@ -37,7 +37,7 @@
 		LIMIT 1
  	</select>
  	
- 	<select id="selectSellerById" resultType="com.quiz.lesson04.model.Seller">
+ 	<select id="selectSellerById" parameterType="int" resultType="com.quiz.lesson04.model.Seller">
  		SELECT
  			`id`
  			,`nickname`
