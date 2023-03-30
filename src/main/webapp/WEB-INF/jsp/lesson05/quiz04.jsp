@@ -54,7 +54,7 @@
 						<c:set var="introduce" value="${member.introduce}" />
 						<c:choose>
 							<c:when test="${fn:length(introduce) > 15 }">
-								aaaa
+								${fn:substring(introduce, 0, 15)}...
 							</c:when>
 							<c:otherwise>
 								${introduce}
