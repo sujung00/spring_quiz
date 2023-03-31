@@ -20,8 +20,8 @@ public class WeatherHistoryController {
 	@Autowired
 	private WeatherHistoryBO weatherHistoryBO;
 
-	// http://localhost:8080/weather/weatherHistory
-	@GetMapping("/weatherHistory")
+	// http://localhost:8080/weather/weather_history
+	@GetMapping("/weather_history")
 	public String weatherHistory(Model model) {
 		List<WeatherHistory> history = weatherHistoryBO.getWeatherHistory();
 		
@@ -30,28 +30,29 @@ public class WeatherHistoryController {
 		return "weather/weatherHistory";
 	}
 	
-	// http://localhost:8080/weather/weatherInsertView
-	@GetMapping("/weatherInsertView")
+	// http://localhost:8080/weather/weather_insert_view
+	@GetMapping("/weather_insert_view")
 	public String weatherInsertView() {
 		return "weather/weatherInsert";
 	}
 	
-	// http://localhost:8080/weather/weatherInsert
-	@PostMapping("/weatherInsert")
+	// http://localhost:8080/weather/weather_insert
+	@PostMapping("/weather_insert")
 	public String weatherInsert(
 			@RequestParam("date")String date,
 			@RequestParam("weather")String weather,
 			@RequestParam("microDust")String microDust,
 			@RequestParam("temperatures")double temperatures,
 			@RequestParam("precipitation")double precipitation,
-			@RequestParam("windSpeed")double windSpeed,
-			Model model) {
+			@RequestParam("windSpeed")double windSpeed) {
 		weatherHistoryBO.addWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
 		
-		List<WeatherHistory> history = weatherHistoryBO.getWeatherHistory();
+		/*
+		 * List<WeatherHistory> history = weatherHistoryBO.getWeatherHistory();
+		 * 
+		 * model.addAttribute("history", history);
+		 */
 		
-		model.addAttribute("history", history);
-		
-		return "weather/weatherHistory";
+		return "redirect:/weather/weather_history";
 	}
 }

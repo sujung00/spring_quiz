@@ -11,9 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<!-- datepicker 라이브러리 -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <link rel="stylesheet" href="/css/lesson05/style1.css" type="text/css">
 </head>
 <body>
@@ -23,8 +21,8 @@
 				<div class="mt-2"><img alt="footer" src="/img/header.jpg" width="100px"></div>
 				<div class="mt-4">
 					<ul class="nav flex-column">
-                        <li class="font-weight-bold"><a href="/weather/weatherHistory" class="nav-link">날씨</a></li>
-                        <li class="font-weight-bold"><a href="/weather/weatherInsertView" class="nav-link">날씨입력</a></li>
+                        <li class="font-weight-bold"><a href="/weather/weather_history" class="nav-link">날씨</a></li>
+                        <li class="font-weight-bold"><a href="/weather/weather_insert_view" class="nav-link">날씨입력</a></li>
                         <li class="font-weight-bold"><a href="#" class="nav-link">테마날씨</a></li>
                         <li class="font-weight-bold"><a href="#" class="nav-link">관측 기후</a></li>
                     </ul>
@@ -89,26 +87,5 @@
 			</div>
 		</footer>
 	</div>
-	<script>
-            $(document).ready(function() {
-                // 모든 데이터피커에 적용
-                $.datepicker.setDefaults({
-                    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'] // 요일을 한글로 변경
-                    , dateFormat: 'yyyy-MM-dd'
-                });
-
-                // 오늘 날짜로 이동하는 함수
-                $.datepicker._gotoToday = function(id) {
-                    $(id).datepicker('setDate', new Date()).datepicker('hide').blur();
-                };
-
-
-                $('#date').datepicker({
-                    showButtonPanel: true // 오늘 버튼 노출
-                    , minDate:0 // 오늘과 그 이후만 선택 가능
-                });
-            });
-
-        </script>
 </body>
 </html>

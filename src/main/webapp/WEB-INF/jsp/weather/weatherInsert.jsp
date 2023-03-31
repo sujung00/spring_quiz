@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>과거 날씨</title>
+<title>날씨 입력</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
@@ -34,8 +34,8 @@
 				</div>
 				<div class="mt-4">
 					<ul class="nav flex-column">
-						<li class="font-weight-bold"><a href="/weather/weatherHistory" class="nav-link">날씨</a></li>
-                        <li class="font-weight-bold"><a href="/weather/weatherInsertView" class="nav-link">날씨입력</a></li>
+						<li class="font-weight-bold"><a href="/weather/weather_history" class="nav-link">날씨</a></li>
+                        <li class="font-weight-bold"><a href="/weather/weather_insert_view" class="nav-link">날씨입력</a></li>
                         <li class="font-weight-bold"><a href="#" class="nav-link">테마날씨</a></li>
 						<li class="font-weight-bold"><a href="#" class="nav-link">관측
 								기후</a></li>
@@ -45,7 +45,7 @@
 			<section class="w-75 ml-4 mt-3">
 				<h3>날씨 입력</h3>
 				<div class="m-4 w-100">
-					<form action="/weather/weatherInsert" method="post">
+					<form action="/weather/weather_insert" method="post">
 						<div class="d-flex justify-content-between mt-5">
 							<div class="d-flex align-items-center">
 								<div class="input-label">날짜</div>
@@ -135,6 +135,8 @@
                     $(id).datepicker('setDate', new Date()).datepicker('hide').blur();
                 };
 
+                // name이 date인 것으로 하려면
+                //$('input[name=date]')
                 $('#date').datepicker({
                     showButtonPanel: true // 오늘 버튼 노출
                 });
