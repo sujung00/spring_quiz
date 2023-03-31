@@ -20,7 +20,8 @@
 	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 	crossorigin="anonymous"></script>
 <!-- datepicker 라이브러리 -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="/css/lesson05/style1.css" type="text/css">
 </head>
@@ -33,9 +34,9 @@
 				</div>
 				<div class="mt-4">
 					<ul class="nav flex-column">
-						<li class="font-weight-bold"><a href="#" class="nav-link">날씨</a></li>
-						<li class="font-weight-bold"><a href="#" class="nav-link">날씨입력</a></li>
-						<li class="font-weight-bold"><a href="#" class="nav-link">테마날씨</a></li>
+						<li class="font-weight-bold"><a href="/weather/weatherHistory" class="nav-link">날씨</a></li>
+                        <li class="font-weight-bold"><a href="/weather/weatherInsertView" class="nav-link">날씨입력</a></li>
+                        <li class="font-weight-bold"><a href="#" class="nav-link">테마날씨</a></li>
 						<li class="font-weight-bold"><a href="#" class="nav-link">관측
 								기후</a></li>
 					</ul>
@@ -43,25 +44,26 @@
 			</menu>
 			<section class="w-75 ml-4 mt-3">
 				<h3>날씨 입력</h3>
-				<div class="m-5 w-100">
+				<div class="m-4 w-100">
 					<form action="/weather/weatherInsert" method="post">
-						<div class="d-flex justify-content-between">
-							<div class="form-group d-flex align-items-center">
-								<label for="date" class="w-25">날짜</label> <input type="text" id="date"
-									name="date" class="form-control ml-2 mr-2">
+						<div class="d-flex justify-content-between mt-5">
+							<div class="d-flex align-items-center">
+								<div class="input-label">날짜</div>
+								<input type="text" class="form-control" id="date" name="date">
 							</div>
-							<div class="form-group d-flex align-items-center">
-								<label for="weather" class="w-50">날씨</label> <select
-									id="weather" name="weather" class="form-control ml-2 mr-2">
+							<div class="d-flex align-items-center">
+								<div class="input-label">날씨</div>
+								<select class="form-control" name="weather">
 									<option>맑음</option>
 									<option>구름조금</option>
 									<option>흐림</option>
 									<option>비</option>
 								</select>
 							</div>
-							<div class="form-group d-flex align-items-center">
-								<label for="microDust" class="w-100">미세먼지</label> <select
-									id="microDust" name="microDust" class="form-control ml-2">
+
+							<div class="d-flex align-items-center">
+								<div class="input-label">미세먼지</div>
+								<select class="form-control" name="microDust">
 									<option>좋음</option>
 									<option>보통</option>
 									<option>나쁨</option>
@@ -69,37 +71,40 @@
 								</select>
 							</div>
 						</div>
-						<div class="d-flex justify-content-between">
-							<div class="d-flex">
-								<label for="temperatures" class="w-25">기온</label>
+
+						<div class="d-flex justify-content-between mt-5">
+							<div class="d-flex align-items-center">
+								<div class="input-label">기온</div>
 								<div class="input-group">
-									<input type="text" class="form-control" id="temperatures" name="temperatures">
+									<input type="text" class="form-control" name="temperatures">
 									<div class="input-group-append">
-										<span class="input-group-text">°C</span>
+										<span class="input-group-text">℃</span>
 									</div>
 								</div>
 							</div>
-							<div class="d-flex ml-3">
-								<label for="temperatures" class="w-25">강수량</label>
+							<div class="d-flex align-items-center">
+								<div class="input-label">강수량</div>
 								<div class="input-group">
-									<input type="text" class="form-control" id="temperatures" name="temperatures">
+									<input type="text" class="form-control" name="precipitation">
 									<div class="input-group-append">
 										<span class="input-group-text">mm</span>
 									</div>
 								</div>
 							</div>
-							<div class="d-flex ml-3">
-								<label for="temperatures" class="w-25">풍속</label>
+
+							<div class="d-flex align-items-center">
+								<div class="input-label">풍속</div>
 								<div class="input-group">
-									<input type="text" class="form-control" id="temperatures" name="temperatures">
+									<input type="text" class="form-control" name="windSpeed">
 									<div class="input-group-append">
 										<span class="input-group-text">km/h</span>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="w-100 d-flex justify-content-end">
-							<input type="submit" class="btn btn-success mt-2" value="저장">						
+
+						<div class="text-right mt-4 mb-5">
+							<input type="submit" class="btn btn-success" value="저장">
 						</div>
 					</form>
 				</div>
@@ -117,5 +122,25 @@
 			</div>
 		</footer>
 	</div>
+	<script>
+            $(document).ready(function() {
+                // 모든 데이터피커에 적용
+                $.datepicker.setDefaults({
+                    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'] // 요일을 한글로 변경
+                    , dateFormat: 'yy-mm-dd'
+                });
+
+                // 오늘 날짜로 이동하는 함수
+                $.datepicker._gotoToday = function(id) {
+                    $(id).datepicker('setDate', new Date()).datepicker('hide').blur();
+                };
+
+                $('#date').datepicker({
+                    showButtonPanel: true // 오늘 버튼 노출
+                });
+
+            });
+
+	</script>
 </body>
 </html>

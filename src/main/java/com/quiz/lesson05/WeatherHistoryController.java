@@ -44,8 +44,13 @@ public class WeatherHistoryController {
 			@RequestParam("microDust")String microDust,
 			@RequestParam("temperatures")double temperatures,
 			@RequestParam("precipitation")double precipitation,
-			@RequestParam("windSpeed")double windSpeed) {
+			@RequestParam("windSpeed")double windSpeed,
+			Model model) {
 		weatherHistoryBO.addWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
+		
+		List<WeatherHistory> history = weatherHistoryBO.getWeatherHistory();
+		
+		model.addAttribute("history", history);
 		
 		return "weather/weatherHistory";
 	}
