@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/lesson05/storeStyle.css" type="text/css">
 </head>
 <body>
 	<div class="container">
@@ -21,8 +22,8 @@
 			<span class="display-4">${storeName} - 리뷰</span>
 		</section>
 		<section>
-		<c:forEach items="${reviews}" var="review">
-			<c:if test="${reviews != null}">
+		<c:if test="${fn:length(reviews) != 0}">
+			<c:forEach items="${reviews}" var="review">
 				<div class="border rounded border-info p-3 mb-3">
 					<div class="d-flex">
 						<b class="mr-2">${review.userName}</b>
@@ -110,15 +111,15 @@
 						<fmt:formatDate value="${review.updatedAt}" pattern="yyyy년 M월 d일" />
 					</div>
 					<div>${review.review}</div>
-					<div>
-						<span class="rounded bg-secondary">${review.menu}</span>
+					<div class="mt-1">
+						<span class="rounded p-1" id="menu">${review.menu}</span>
 					</div>
 				</div>
-			</c:if>
-			<c:if test="${reviews == null}">
-				<div class="text-center"><b>작성된 리뷰가 없습니다.</b></div>
-			</c:if>
-		</c:forEach>
+			</c:forEach>
+		</c:if>
+		<c:if test="${fn:length(reviews) == 0}">
+			<div class="text-center"><h2>작성된 리뷰가 없습니다.</h2></div>
+		</c:if>
 		</section>
 		<footer>
 			<hr>
