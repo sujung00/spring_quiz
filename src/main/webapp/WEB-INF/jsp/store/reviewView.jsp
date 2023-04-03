@@ -29,9 +29,19 @@
 						<b class="mr-2">${review.userName}</b>
 						<c:set var="point" value="${review.point}"></c:set>
 						<c:forEach begin="1" end="5">
-							<%-- <c:choose>
-								<c:when test=""></c:when>
-							</c:choose> --%>
+							<c:choose>
+								<c:when test="${point > 0.5}">
+									<img src="/images/review/star_fill.png" width="15" height="15" alt="star">
+									<c:set var="point" value="${point - 1}" />
+								</c:when>
+								<c:when test="${point == 0.5}">
+									<img src="/images/review/star_half.png" width="20">
+									<c:set var="point" value="${point - 0.5}" />
+								</c:when>
+								<c:when test="${point == 0}">
+									<img src="/images/review/star_empty.png" width="20">
+								</c:when>
+							</c:choose>
 						</c:forEach>
 					</div>
 					<div class="text-secondary">
