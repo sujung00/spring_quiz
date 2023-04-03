@@ -27,85 +27,12 @@
 				<div class="border rounded border-info p-3 mb-3">
 					<div class="d-flex">
 						<b class="mr-2">${review.userName}</b>
-						<c:choose>
-							<c:when test="${review.point == 0}">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 0.5}">
-								<img alt="반만 채워진 별" src="/img/star_half.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 1}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 1.5}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="반만 채워진 별" src="/img/star_half.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 2}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 2.5}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="반만 채워진 별" src="/img/star_half.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 3}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 3.5}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="반만 채워진 별" src="/img/star_half.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 4}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="비어있는 별" src="/img/star_empty.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 4.5}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="반만 채워진 별" src="/img/star_half.png" width="15" height="15">
-							</c:when>
-							<c:when test="${review.point == 5}">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-								<img alt="채워진 별" src="/img/star_fill.png" width="15" height="15">
-							</c:when>
-						</c:choose>
+						<c:set var="point" value="${review.point}"></c:set>
+						<c:forEach begin="1" end="5">
+							<%-- <c:choose>
+								<c:when test=""></c:when>
+							</c:choose> --%>
+						</c:forEach>
 					</div>
 					<div class="text-secondary">
 						<fmt:formatDate value="${review.updatedAt}" pattern="yyyy년 M월 d일" />
