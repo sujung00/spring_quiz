@@ -20,6 +20,7 @@
 					<th>NO.</th>
 					<th>이름</th>
 					<th>주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,10 +29,19 @@
 					<td>${status.count}</td>
 					<td>${bookmark.name}</td>
 					<td>${bookmark.url}</td>
+					<td></td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 	</div>
 </body>
+
+<script>
+	$(document).ready(function() {
+		$(Selector[attr^="deleteBtn"]).on("click", function() {
+			alert("버튼 클릭");
+		})
+	});
+</script>
 </html>

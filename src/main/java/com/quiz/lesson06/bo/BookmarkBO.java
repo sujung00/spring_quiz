@@ -14,11 +14,15 @@ public class BookmarkBO {
 	@Autowired
 	private BookmarkMapper bookmarkMapper;
 
-	public void addBookmark(String name, String url) {
-		bookmarkMapper.insertBookmark(name, url);
+	public int addBookmark(String name, String url) {
+		return bookmarkMapper.insertBookmark(name, url);
 	}
 	
 	public List<Bookmark> getBookmarkList(){
 		return bookmarkMapper.selectBookmarkList();
+	}
+	
+	public boolean existBookmarkByUrl(String url) {
+		return bookmarkMapper.existBookmarkByUrl(url);
 	}
 }

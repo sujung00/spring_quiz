@@ -19,7 +19,11 @@
 		</div>
 		<div class="form-group">
 			<label for="url">주소</label>
-			<input type="text" id="url" class="form-control">
+			<div class="d-flex">
+				<input type="text" id="url" class="form-control col-11">
+				<button type="button" id="urlCheckBtm" class="btn btn-info ml-2 col-1">중복확인</button>
+			</div>
+			<small id="urlStatusArea"></small>
 		</div>
 		<input type="button" id="addBtn" class="btn btn-success w-100" value="추가">
 	</div>
@@ -27,20 +31,44 @@
 <script>
 	$(document).ready(function() {
 		
+		$("#urlCheckBtm").on("click", function() {
+			$('#urlStatusArea').empty();
+			let url = $("#url").val().trim();
+
+			//validation
+			$.ajax({
+				type:"GET"
+				, url:"/lesson06/quiz02/is_duplication"
+				, data:{"url":url}
+			
+				, success:function(data){
+					if(data.isDuplication){
+						$("#urlStatusArea").append('<span class="text-danger">중복된 url 입니다.</span>');
+					} else {
+						$("#urlStatusArea").append('<span class="text-success">저장 가능한 url 입니다.</span>');
+					}
+				}
+				, error:function(request, status, error) {
+					alert("중복 확인에 실패했습니다. 관리자에게 문의해주세요.");
+				}
+			})
+		});
+		
 		$("#addBtn").on("click", function() {
 			let name = $("#name").val().trim();
 			let url = $("#url").val().trim();
 			
 			if(!name){
-				alert("제목을 추가해주세요");
+				alert("제목을 추가해주세요.");
 				return;
 			}
 			if(!url) {
-				alert("주소를 추가해주세요");
+				alert("주소를 추가해주세요.");
 				return;
 			}
-			if(!url.startsWith('http') || !url.startsWith('https')){
-				alert("프로토콜까지 입력헤주세요");
+			// http도 아니고 https도 아닐 때 잘못된 주소
+			if(!url.startsWith('http://') && !url.startsWith('https://')){
+				alert("주소 형식이 잘못되었습니다.");
 				 return;
 			}
 			
@@ -51,9 +79,11 @@
 				, data:{"name":name, "url":url}
 			
 				//response
-				, success:function(data) {
-					if(data == "성공") {
+				, success:function(data) { // jquery ajax 함수가 json string을 object로 파싱해줌
+					if(data.code == 1) {
 						location.href="/lesson06/quiz01/result_view"
+					} else {
+						alert(data.errorMessage);
 					}
 				}
 				, error:function(request, status, error) {
