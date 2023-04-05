@@ -32,9 +32,13 @@
 			`bookmark`
 	</select>
 	
-	<select id="existBookmarkByUrl" parameterType="string" resultType="boolean">
+	<select id="selectBookmarkByUrl" parameterType="string" resultType="com.quiz.lesson06.model.Bookmark">
 		SELECT
-			COUNT(1)
+			`id`
+			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
 		FROM
 			`bookmark`
 		WHERE

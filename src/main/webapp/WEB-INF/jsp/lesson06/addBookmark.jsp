@@ -19,9 +19,9 @@
 		</div>
 		<div class="form-group">
 			<label for="url">주소</label>
-			<div class="d-flex">
+			<div class="form-inline">
 				<input type="text" id="url" class="form-control col-11">
-				<button type="button" id="urlCheckBtm" class="btn btn-info ml-2 col-1">중복확인</button>
+				<button type="button" id="urlCheckBtm" class="btn btn-info">중복확인</button>
 			</div>
 			<small id="urlStatusArea"></small>
 		</div>
@@ -34,10 +34,15 @@
 		$("#urlCheckBtm").on("click", function() {
 			$('#urlStatusArea').empty();
 			let url = $("#url").val().trim();
+			
+			if(!url) {
+				alert("검사할 url을 입력하세요");
+				return;
+			}
 
 			//validation
 			$.ajax({
-				type:"GET"
+				type:"POST"
 				, url:"/lesson06/quiz02/is_duplication"
 				, data:{"url":url}
 			

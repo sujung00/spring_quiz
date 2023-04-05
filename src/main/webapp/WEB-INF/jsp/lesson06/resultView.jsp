@@ -29,7 +29,10 @@
 					<td>${status.count}</td>
 					<td>${bookmark.name}</td>
 					<td>${bookmark.url}</td>
-					<td><button type="button" class="btn btn-danger" id="${bookmark.id}">삭제</button></td>
+					<td>
+						<%-- <button type="button" class="del-btn btn btn-danger" id="${bookmark.id}">삭제</button> --%>
+						<button type="button" class="del-btn btn btn-danger" data-bookmark-id="${bookmark.id}">삭제</button>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -39,19 +42,22 @@
 
 <script>
 	$(document).ready(function() {
-		$(".btn-danger").on("click", function() {
-			let id = $(this).attr("id")
+		/* $(".del-btn").on("click", function(e) {
+			let id = e.target.value // javascript
+			//let id = $(this).attr("id") // jquery
 			
 			$.ajax({
-				type:"GET"
+				type:"POST"
 				, url:"/lesson06/quiz02/delete_url"
 				, data:{"id":id}
 			
 				, success:function(data){
 					//화면 새로고침
-					if(data.result == 1){
+					if(data.code == 1){
 						// $("#bookmarkTable").load(location.href+" #bookmarkTable");
 						location.reload();
+					} else {
+						alert("삭제에 실패했습니다.");
 					}
 				}
 				, error:function(request, status, error) {
@@ -59,8 +65,36 @@
 					alert(status);
 					alert(error);
 				}
-			})
+			});
 			
+		}); */
+		
+		// data를 활용
+		// data-bookmark-id  태그에 값을 심어 놓는다.
+		// data-  그 뒤부터는 이름을 직접 짓는다.(대문자 불가능!! camel 불가능!!)
+		// 스크립트 : $(this).data('bookmark-id');
+		$('.del-btn').on('click', function() {
+			let id = $(this).data('bookmark-id');
+			
+			$.ajax({
+				type:"POST"
+				, url:"/lesson06/quiz02/delete_url"
+				, data:{"id":id}
+			
+				, success:function(data){
+					//화면 새로고침
+					if(data.code == 1){
+						// $("#bookmarkTable").load(location.href+" #bookmarkTable");
+						// location.href() 이용하면 스크롤이 젤 위로 올라감
+						location.reload(true); 
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error) {
+					alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요.");
+				}
+			});
 		});
 	});
 </script>

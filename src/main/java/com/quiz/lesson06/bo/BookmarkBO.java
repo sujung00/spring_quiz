@@ -22,8 +22,8 @@ public class BookmarkBO {
 		return bookmarkMapper.selectBookmarkList();
 	}
 	
-	public boolean existBookmarkByUrl(String url) {
-		return bookmarkMapper.existBookmarkByUrl(url);
+	public Bookmark getBookmarkByUrl(String url) {
+		return bookmarkMapper.selectBookmarkByUrl(url);
 	}
 	
 	public int deleteBookmarkById(int id) {

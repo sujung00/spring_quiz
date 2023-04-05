@@ -16,7 +16,7 @@ public interface BookmarkMapper {
 	
 	public List<Bookmark> selectBookmarkList();
 	
-	public boolean existBookmarkByUrl(String url);
+	public Bookmark selectBookmarkByUrl(String url);
 	
 	public int deleteBookmarkById(int id);
 }
