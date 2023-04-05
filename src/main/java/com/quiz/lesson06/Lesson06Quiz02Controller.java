@@ -18,19 +18,26 @@ public class Lesson06Quiz02Controller {
 
 	@Autowired
 	private BookmarkBO bookmarkBO;
-	
+
 	@ResponseBody
 	@GetMapping("/is_duplication")
 	public Map<String, Boolean> isDuplication(
 			@RequestParam("url") String url) {
-		
+
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isDuplication", bookmarkBO.existBookmarkByUrl(url));
+
+		return result;
+	}
+
+	@ResponseBody
+	@GetMapping("/delete_url")
+	public Map<String, Integer> deleteUrl(
+			@RequestParam("id") int id) {
+		Map<String, Integer> result = new HashMap<>();
+		result.put("result", bookmarkBO.deleteBookmarkById(id));
 		
 		return result;
 	}
-	
-	/*
-	 * @GetMapping("/delete_url") public
-	 */
+	 
 }

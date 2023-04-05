@@ -43,9 +43,9 @@
 			
 				, success:function(data){
 					if(data.isDuplication){
-						$("#urlStatusArea").append('<span class="text-danger">중복된 url 입니다.</span>');
+						$("#urlStatusArea").append('<span class="text-danger" id="danger">중복된 url 입니다.</span>');
 					} else {
-						$("#urlStatusArea").append('<span class="text-success">저장 가능한 url 입니다.</span>');
+						$("#urlStatusArea").append('<span class="text-success" id="success">저장 가능한 url 입니다.</span>');
 					}
 				}
 				, error:function(request, status, error) {
@@ -70,6 +70,12 @@
 			if(!url.startsWith('http://') && !url.startsWith('https://')){
 				alert("주소 형식이 잘못되었습니다.");
 				 return;
+			}
+			//저장 가능한 url일 때만 추가 가능
+			let urlStatus = $("#urlStatusArea").children().attr("id")
+			if(urlStatus == 'danger' || urlStatus == null){
+				alert("url을 확인해주세요.");
+				return;
 			}
 			
 			$.ajax({

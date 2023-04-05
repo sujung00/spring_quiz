@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<h2>즐겨 찾기 목록</h2>
-		<table class="table">
+		<table class="table" id="bookmarkTable">
 			<thead>
 				<tr>
 					<th>NO.</th>
@@ -29,7 +29,7 @@
 					<td>${status.count}</td>
 					<td>${bookmark.name}</td>
 					<td>${bookmark.url}</td>
-					<td></td>
+					<td><button type="button" class="btn btn-danger" id="${bookmark.id}">삭제</button></td>
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -39,9 +39,29 @@
 
 <script>
 	$(document).ready(function() {
-		$(Selector[attr^="deleteBtn"]).on("click", function() {
-			alert("버튼 클릭");
-		})
+		$(".btn-danger").on("click", function() {
+			let id = $(this).attr("id")
+			
+			$.ajax({
+				type:"GET"
+				, url:"/lesson06/quiz02/delete_url"
+				, data:{"id":id}
+			
+				, success:function(data){
+					//화면 새로고침
+					if(data.result == 1){
+						// $("#bookmarkTable").load(location.href+" #bookmarkTable");
+						location.reload();
+					}
+				}
+				, error:function(request, status, error) {
+					alert(request);
+					alert(status);
+					alert(error);
+				}
+			})
+			
+		});
 	});
 </script>
 </html>
