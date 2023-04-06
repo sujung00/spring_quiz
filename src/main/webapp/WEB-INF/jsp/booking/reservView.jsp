@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 		<header>
-			<div class="display-4 text-center m-2">통나무 팬션</div>
+			<div class="display-4 text-center m-2"><a href="/booking/reserv_check_view" class="main">통나무 팬션</a></div>
 		</header>
 		<menu class="p-0">
 			<ul class="nav nav-fill">
@@ -84,6 +84,7 @@
 
         $('#date').datepicker({
             showButtonPanel: true // 오늘 버튼 노출
+            , minDate:0 // 오늘과 그 이후만 선택 가능
         });
 		
 		$("#reservBtn").on('click', function() {
@@ -93,8 +94,37 @@
 			let headcount = $("#headcount").val().trim();
 			let phoneNumber = $("#phoneNumber").val().trim();
 			
+			if(!name){
+				alert("이름을 입력하세요.");
+			}
+			if(!date){
+				alert("예약날짜를 입력하세요.");
+			}
+			if(!day){
+				alert("숙박일수를 입력하세요.");
+			}
+			if(!headcount){
+				alert("숙박인원을 입력하세요.");
+			}
+			if(!phoneNumber){
+				alert("전화번호를 입력하세요.");
+			}
+			
 			$.ajax({
-				
+				type:"POST"
+				, url:"/booking/add_reserv"
+				, data:{"name":name, "date":date, "day":day, "headcount":headcount, "phoneNumber":phoneNumber}
+			
+				, success:function(data) {
+					if(data.code == 1){
+						location.href="/booking/reserv_list_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error) {
+					alert("예약에 실패했습니다. 관리자에게 문의해주세요.");
+				}
 			})
 			
 		});
