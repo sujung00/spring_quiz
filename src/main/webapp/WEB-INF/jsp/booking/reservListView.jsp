@@ -59,6 +59,12 @@
 								<c:when test="${booking.state == '확정'}">
 									<span class="text-success">${booking.state}</span>
 								</c:when>
+								<c:when test="${booking.state == '취소'}">
+									<span class="text-danger">${booking.state}</span>
+								</c:when>
+								<c:otherwise>
+									${booking.state}
+								</c:otherwise>
 							</c:choose>
 						</td>
 						<td>
@@ -68,7 +74,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</section>
+		</section> 
 		<footer>
 			<div>
 				<small class="text-secondary">제주특별자치도 제주시 애월읍</small>
@@ -88,7 +94,7 @@
 			let id = $(this).data('booking-id');
 			
 			$.ajax({
-				type:"POST"
+				type:"delete" // POST계열, 브라우저로 직접 치고 못들어감
 				, url:"/booking/delete_booking"
 				, data:{"id":id}
 			

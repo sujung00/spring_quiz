@@ -29,6 +29,13 @@ public class BookingBO {
 	}
 	
 	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber) {
-		return bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+		List<Booking> bookingList = bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+		
+		if(bookingList.isEmpty()) {
+			return null;
+		} 
+		
+		// 비어있지 않으면 값이 있고, 마지막 인덱스에 있는 값을 돌려준다. (최신값)
+		return bookingList.get(bookingList.size()-1);
 	}
 }

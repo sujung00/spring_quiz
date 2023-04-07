@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +42,9 @@ public class BookingController {
 		return "booking/reservView";
 	}
 	
+	// 삭제하기 기능 - AJAX 요청
 	@ResponseBody
-	@PostMapping("/delete_booking")
+	@DeleteMapping("/delete_booking")
 	public Map<String, Object> deleteBooking(
 			@RequestParam("id") int id){
 		Map<String, Object> result = new HashMap<>();
@@ -58,6 +60,7 @@ public class BookingController {
 		return result;
 	}
 	
+	// 예약하기 기능 - AJAX 요청
 	@ResponseBody
 	@PostMapping("/add_reserv")
 	public Map<String, Object> addReserv(
@@ -88,6 +91,7 @@ public class BookingController {
 		return "booking/reservCheckView";
 	}
 	
+	// 예약 조회 기능
 	@ResponseBody
 	@PostMapping("/reserv_check")
 	public Map<String, Object> reservCheck(
@@ -102,7 +106,7 @@ public class BookingController {
 			result.put("result", "성공");
 			result.put("booking", booking);
 		} else {
-			result.put("code", 300);
+			result.put("code", 500);
 			result.put("message", "예약 내역이 없습니다.");
 		}
 		

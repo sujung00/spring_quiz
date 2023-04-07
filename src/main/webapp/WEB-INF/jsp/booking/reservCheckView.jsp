@@ -78,6 +78,7 @@
 <script>
 	$(document).ready(function() {
 		
+		// 배너 순회
 		 var bannerSrcArr = ['/img/test06_banner2.jpg', '/img/test06_banner3.jpg', '/img/test06_banner4.jpg', '/img/test06_banner1.jpg'];
          var currentIndex = 0;
          setInterval(function() {
@@ -109,7 +110,6 @@
         	 
         	 	 , success:function(data) {
                 	 if(data.code == 1){
-                		 let date = 
                 		 alert("이름: " + data.booking.name + 
                     			 "\n날짜: " + data.booking.date + 
                     			 "\n전화번호: " + phoneNumber +

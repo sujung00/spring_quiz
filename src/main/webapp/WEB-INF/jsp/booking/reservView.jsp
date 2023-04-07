@@ -96,18 +96,31 @@
 			
 			if(!name){
 				alert("이름을 입력하세요.");
+				return;
 			}
 			if(!date){
 				alert("예약날짜를 입력하세요.");
+				return;
 			}
 			if(!day){
 				alert("숙박일수를 입력하세요.");
+				return;
+			}
+			if(isNAN(day)) { // 숫자가 아닌 값 들어오면 true
+				alert("숙박일수는 숫자만 입력가능합니다");
+				return;
 			}
 			if(!headcount){
 				alert("숙박인원을 입력하세요.");
+				return;
+			}
+			if(isNAN(headcount)) { // 숫자가 아닌 값 들어오면 true
+				alert("숙박인원은 숫자만 입력가능합니다");
+				return;
 			}
 			if(!phoneNumber){
 				alert("전화번호를 입력하세요.");
+				return;
 			}
 			
 			$.ajax({
